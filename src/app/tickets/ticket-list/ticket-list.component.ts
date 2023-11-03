@@ -12,7 +12,7 @@ export class TicketListComponent implements OnInit {
   public ticketList: Ticket[] = [];
 
   constructor(public ticketService: TicketService) {
-    this.ticketService.tickets$.subscribe((tickets) => this.ticketList = tickets);
+    // this.ticketService.tickets$.subscribe((tickets) => this.ticketList = tickets);
   }
 
   ngOnInit() {
