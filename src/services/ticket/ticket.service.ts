@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Ticket } from '../../models/ticket';
 import { TICKETS_MOCKED } from '../../mocks/tickets.mock';
-import { BehaviorSubject } from 'rxjs/index';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +26,15 @@ export class TicketService {
   addTicket(ticket: Ticket) {
     // You need here to update the list of ticket and then update our observable (Subject) with the new list
     // More info: https://angular.io/tutorial/toh-pt6#the-searchterms-rxjs-subject
+    this.tickets$.value.push(ticket);
+    console.log("Ajout dans la liste: ", this.tickets$.value);
+    this.tickets$.next(this.ticketList)
+  }
+
+  deleteTicket(ticket: Ticket) {
+    // this.tickets$.value.filter(tick => tick != ticket);
+    this.tickets$.value.splice(this.tickets$.value.indexOf(ticket), 1);
+    console.log("Suppresion dans la liste: ", this.tickets$.value);
+    this.tickets$.next(this.ticketList)
   }
 }
