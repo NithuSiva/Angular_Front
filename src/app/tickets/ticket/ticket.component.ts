@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Ticket } from '../../../models/ticket';
+import { Major } from '../../../models/enum';
 
 @Component({
   selector: 'app-ticket',
@@ -14,24 +15,27 @@ export class TicketComponent implements OnInit {
    */
   @Input()
   ticket!: Ticket;
-
   @Output()
   ticketHasBeenSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @Output()
-  ticketHasBeenDeleted: EventEmitter<Ticket> = new EventEmitter<Ticket>();
+  ticketHasBeenArchived: EventEmitter<Ticket> = new EventEmitter<Ticket>();
 
   constructor() {
   }
 
   ngOnInit() {
   }
+  
+  public get major(): typeof Major {
+    return Major;
+  }
 
   selectTicket() {
     this.ticketHasBeenSelected.emit(true);
   }
 
-  deleteTicket(ticket: Ticket) {
-    this.ticketHasBeenDeleted.emit(ticket);
+  archivedTicket(ticket: Ticket) {
+    this.ticketHasBeenArchived.emit(ticket);
   }
 }

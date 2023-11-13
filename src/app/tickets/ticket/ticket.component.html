@@ -4,15 +4,17 @@
   <!-- we use the {{ }} syntax to display the data, more info: https://angular.io/guide/displaying-data-->
   <h3>Titre : {{ticket.title}}</h3>
   <i class="fas fa-calendar-alt"></i> {{ticket.date | date: 'shortTime'}} &nbsp;&nbsp;
-  <i class="far fa-user"></i> {{ticket.student}}
-  <div *ngIf="ticket.major == Major.SI">
+  <i class="far fa-user" *ngIf="ticket.student"> {{ticket.student.firstName}} {{ticket.student.lastName}} &nbsp;&nbsp;</i>
+  
+  <div *ngIf="ticket.major == 'SI'">
     <i class="fas fa-wine-bottle"></i>
   </div>
-  <div *ngIf="ticket.major == Major.GE">
+  <div *ngIf="ticket.major == 'GE'">
     <i class="fas fa-wheelchair"></i>
   </div>
-  <div *ngIf="ticket.major == Major.GB">
+  <div *ngIf="ticket.major == 'GB'">
     <i class="fas fa-walking"></i> 
   </div>
-  <button type="submit" class="btn-custom" (click)="deleteTicket(ticket)">Delete</button>
+  {{ticket.major}}
+  <button type="submit" class="btn-custom" (click)="archivedTicket(ticket)">Archived</button>
 </div>
