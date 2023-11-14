@@ -15,6 +15,7 @@ export class TicketComponent implements OnInit {
    */
   @Input()
   ticket!: Ticket;
+  
   @Output()
   ticketHasBeenSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -37,5 +38,6 @@ export class TicketComponent implements OnInit {
 
   archivedTicket(ticket: Ticket) {
     this.ticketHasBeenArchived.emit(ticket);
+    console.log(ticket);
   }
 }

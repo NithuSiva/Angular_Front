@@ -11,7 +11,7 @@
   </label>
   <br>
   <label for="major">
-    Major <br>
+    Major 
     <select class="input-custom" name="major" id="major-select" [formControlName]="'major'">
       <option *ngFor="let currentMajor of FILIERE_LIST" [value]="currentMajor">
         {{currentMajor}}
@@ -19,8 +19,9 @@
     </select>
 
   </label>
+  <br>
   <label for="student">
-    Student <br>
+    Student
     <select class="input-custom" required id="student" [formControlName]="'studentID'">
       <option value="" disabled selected>Choose the Student</option>
       <option *ngFor="let student of STUDENTS_LIST" [value]="student.id">

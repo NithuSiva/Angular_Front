@@ -5,16 +5,17 @@
   <h3>Titre : {{ticket.title}}</h3>
   <i class="fas fa-calendar-alt"></i> {{ticket.date | date: 'shortTime'}} &nbsp;&nbsp;
   <i class="far fa-user" *ngIf="ticket.student"> {{ticket.student.firstName}} {{ticket.student.lastName}} &nbsp;&nbsp;</i>
-  
+  <br>
+  <i> {{ticket.description}}</i>
   <div *ngIf="ticket.major == 'SI'">
-    <i class="fas fa-wine-bottle"></i>
+    <i class="fas fa-wine-bottle"> {{ticket.major}}</i>
   </div>
   <div *ngIf="ticket.major == 'GE'">
-    <i class="fas fa-wheelchair"></i>
+    <i class="fas fa-wheelchair"> {{ticket.major}}</i>
   </div>
   <div *ngIf="ticket.major == 'GB'">
-    <i class="fas fa-walking"></i> 
+    <i class="fas fa-walking"> {{ticket.major}}</i> 
   </div>
-  {{ticket.major}}
-  <button type="submit" class="btn-custom" (click)="archivedTicket(ticket)">Archived</button>
+ 
+  <button id="" type="submit" class="btn-custom" (click)="archivedTicket(ticket)">{{ticket.archived ? 'Archived' : 'Archive'}}</button>
 </div>

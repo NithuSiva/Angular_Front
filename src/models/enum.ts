@@ -4,3 +4,4 @@ export enum Major {
   GE = "GE",
   GB = "GB"
 }
+
