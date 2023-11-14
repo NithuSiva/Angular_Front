@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, last } from 'rxjs';
 import { STUDENTS_MOCKED } from 'src/mocks/student.mock';
 import { Student } from 'src/models/student';
@@ -13,6 +13,9 @@ export class StudentService {
     private studentList: Student[] = [];
 
     public students$: BehaviorSubject<any[]> = new BehaviorSubject<any>([]);
+
+  
+    public studentHasBeenAdded: EventEmitter<Student> = new EventEmitter<Student>();
 
     public url: string = "https://jsonplaceholder.typicode.com/users";
     private studentListApi: any;
@@ -29,11 +32,8 @@ export class StudentService {
     }
 
     addStudent(student: Student) {
-        console.log("Nouveau student", student);
         // this.students$.value.push(student);
         this.studentList.push(student);
-        console.log("Ajout dans la liste: ", this.studentList);
-
         this.students$.next(this.studentList);
       }
 

@@ -9,7 +9,10 @@ import { Student } from 'src/models/student';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
+
 export class UserFormComponent {
+
+
   public studentForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder, public studentService: StudentService) {
@@ -18,6 +21,8 @@ export class UserFormComponent {
       firstName: [''],
       lastName: ['']
     }); 
+    console.log('Composant user-form créé');
+
   }
 
   addStudent() {
@@ -31,6 +36,13 @@ export class UserFormComponent {
       trArray.forEach(function(element) {
         element.remove();
       });
+
     this.studentService.addStudent(studentToCreate);
+   
+    console.log("studentHasBeenAdded emit : ", studentToCreate);
+    this.studentService.studentHasBeenAdded.emit(studentToCreate);
+    
+    console.log(this.studentService.students$)
+
   }
 }

@@ -1,7 +1,21 @@
 @import '../../../styles/card.scss';
+h3 {
+  width: 100%;
+  text-align: center;
+}
 
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
 button {
+  width: 30%;
   background-color: transparent;
   border: none;
   font-size: 1em;
+  margin: 0 auto;
+  margin-bottom: 50px;
 }
