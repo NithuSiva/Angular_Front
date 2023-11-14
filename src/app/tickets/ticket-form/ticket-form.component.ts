@@ -17,25 +17,37 @@ export class TicketFormComponent implements OnInit {
   public ticketForm: FormGroup;
   public FILIERE_LIST: string[] = Object.values(Major);
   public STUDENTS_LIST: Array<any> = [];
-
   constructor(public formBuilder: FormBuilder, public ticketService: TicketService, public studentService: StudentService) {
     // Form creation
-    studentService.getApiAndClearStudent();
+   
+    
     this.ticketForm = this.formBuilder.group({
       title: [''],
       description: [''],
       major: [''],
       studentID: ['']
-    });
+    }); 
     
-    let list = this.ticketService['ticketList'];
-    list.forEach(element => {
-      console.log(element['student'])
-      this.STUDENTS_LIST.push(element['student']);
-    });
   }
 
   ngOnInit() {    
+    this.httpGetCall(this.studentService);
+
+    this.studentService.getStudentsSubject().subscribe((elem) => {
+      console.log(elem)
+      elem.forEach(student => {
+        this.STUDENTS_LIST.push(student);
+      });
+    })
+
+  }
+
+  async httpGetCall(studentService: StudentService) {
+    try {
+      await studentService.getApiAndClearStudent();
+    } catch (error) {
+      console.error("Erreur");
+    }
   }
 
   addTicket() {

@@ -1,0 +1,17 @@
+body, html {
+    margin: 0;
+    height: 100%;
+}
+
+h3 {
+    width: 100%;
+    text-align: center;
+}
+
+form {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+button {margin-bottom: 50px;}

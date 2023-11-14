@@ -10,26 +10,51 @@ import { Student } from 'src/models/student';
 
 export class StudentService {
 
-    private studentList: Student[] = STUDENTS_MOCKED;
-    public students$: BehaviorSubject<Student[]> = new BehaviorSubject(this.studentList);
+    private studentList: Student[] = [];
+
+    public students$: BehaviorSubject<any[]> = new BehaviorSubject<any>([]);
+
     public url: string = "https://jsonplaceholder.typicode.com/users";
     private studentListApi: any;
     constructor(private _httpClient: HttpClient) {
         
     }
 
-    public getApiAndClearStudent() {
-        this._httpClient.get(this.url)
-        .subscribe(data => {
-            this.studentListApi= (<any>data);
-            let newListStudent: { id: any; firstName: any; lastName: any; }[] = [];
-            this.studentListApi.forEach((element: any) => {
-                let temp = element['name'].split(' ');
-                newListStudent.push({'id' :element['id'], 'firstName': temp[0], 'lastName': temp[1]});
-                
-            });
-            this.students$.next(newListStudent);
+    getLastId(){
+        return this.studentList.length;
+    }
+
+    getStudentsSubject() {
+        return this.students$;
+    }
+
+    addStudent(student: Student) {
+        console.log("Nouveau student", student);
+        // this.students$.value.push(student);
+        this.studentList.push(student);
+        console.log("Ajout dans la liste: ", this.studentList);
+
+        this.students$.next(this.studentList);
+      }
+
+    async getApiAndClearStudent(): Promise<void>{
+        try {
+            await this._httpClient.get(this.url)
+            .subscribe(data => {
+                this.studentListApi= (<any>data);
+                this.studentListApi.forEach((element: any) => {
+                    let temp = element['name'].split(' ');
+                    let newStudent: Student = {'id' :element['id'], 'firstName': temp[0], 'lastName': temp[1]};
+                    this.studentList.push(newStudent);
+
+                    
+                });
+                this.students$.next(this.studentList);
+            }
+            );
+        } catch (error) {
+            console.error("Erreur HTTP GET");
+            throw error;
         }
-        );
     }
 } 

@@ -1,10 +1,12 @@
+body, html {
+  margin: 0;
+  height: 100%;
+}
+
 body {
   background: rgb(204, 90, 130);
 }
 
-.content {
-  display: flex;
-}
 app-ticket-form {
   margin-left: 1em;
 }

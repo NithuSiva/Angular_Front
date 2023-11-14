@@ -1,0 +1,14 @@
+<h3>Create a new student</h3>
+<form class="" [formGroup]="studentForm">
+  <label for="title">
+    First Name <br>
+    <input class="" type="text" id="firstName" [formControlName]="'firstName'">
+  </label>
+  <br>
+  <label for="description">
+    Last Name<br>
+    <input class="" type="text" id="lastName" [formControlName]="'lastName'">
+  </label>
+  <br>
+  <button type="submit" class="btn-custom" (click)="addStudent()">Create</button>
+</form>

@@ -7,6 +7,11 @@ import { TicketService } from '../services/ticket/ticket.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserListComponent } from './users/user-list/user-list.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { UserFormComponent } from './users/user-form/user-form.component';
+import { UserComponent } from './users/user/user.component';
 
 @NgModule({
   declarations: [
@@ -15,11 +20,16 @@ import { HttpClientModule } from '@angular/common/http';
     TicketFormComponent,
     TicketListComponent,
     HeaderComponent,
+    UserListComponent,
+    UserFormComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpClientModule // Import all dependencies
+    HttpClientModule,
+    RouterModule,
+    AppRoutingModule // Import all dependencies
   ],
   providers: [TicketService], // All the services need to be provided
   bootstrap: [AppComponent]

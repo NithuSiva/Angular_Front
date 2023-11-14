@@ -1,0 +1,19 @@
+<p>Liste des étudiants</p>
+
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+    </tr>
+    <tbody id="tbody" >
+        <tr class="tr" *ngFor="let student of STUDENTS_LIST">
+            <td> {{student.id}} </td>
+            <td> {{student.lastName}} </td>
+            <td> {{student.firstName}} </td>
+        </tr>
+    </tbody>
+</table>
+
+<app-user-form></app-user-form>
