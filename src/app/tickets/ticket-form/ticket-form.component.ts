@@ -56,11 +56,11 @@ export class TicketFormComponent implements OnInit {
   }
 
   addTicket() {
-   /*  const ticketToCreate: Ticket = this.ticketForm.getRawValue() as Ticket;
+    const ticketToCreate: Ticket = this.ticketForm.getRawValue() as Ticket;
     ticketToCreate.date = new Date();
     const studentID = this.ticketForm.get("studentID")!.value;
     ticketToCreate.student = this.STUDENTS_LIST.find(student => student.id == studentID);
-    this.ticketService.addTicket(ticketToCreate); */
+    this.ticketService.addTicket(ticketToCreate);
     console.log(this.studentService.students$)
   }
 

@@ -36,10 +36,10 @@ export class TicketService {
     this.tickets$.next(this.ticketList);
   }
 
-  /* deletedTicket(ticket: Ticket) {
+   deletedTicket(ticket: Ticket) {
     // this.tickets$.value.filter(tick => tick != ticket);
     this.tickets$.value.splice(this.tickets$.value.indexOf(ticket), 1);
     console.log("Suppresion dans la liste: ", this.tickets$.value);
     this.tickets$.next(this.ticketList)
-  } */
+  } 
 }
