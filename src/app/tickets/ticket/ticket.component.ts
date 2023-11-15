@@ -36,8 +36,10 @@ export class TicketComponent implements OnInit {
     this.ticketHasBeenSelected.emit(true);
   }
 
-  archivedTicket(ticket: Ticket) {
+  archivedTicket(ticket: Ticket, event: any) {
     this.ticketHasBeenArchived.emit(ticket);
-    console.log(ticket);
+    // let element = event.srcElement;
+    // let el = document.getElementById(element.id)?.parentElement;
+    // el?.classList.add('ticket-archived');
   }
 }

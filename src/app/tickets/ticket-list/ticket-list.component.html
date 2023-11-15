@@ -5,7 +5,7 @@
   <div class="ticket" *ngFor="let ticket of ticketList">
     <span *ngIf="!ticket.archived || displayTicketArchived">
       <app-ticket [ticket]="ticket" (ticketHasBeenSelected)="ticketHasBeenSelected($event)"
-        (ticketHasBeenArchived)="archivedTicket($event)"></app-ticket>
+        (ticketHasBeenArchived)="archivedTicket(ticket, $event)"></app-ticket>
     </span>
   </div>
 </div>

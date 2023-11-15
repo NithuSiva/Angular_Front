@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TicketService } from '../../../services/ticket/ticket.service';
 import { Ticket } from '../../../models/ticket';
+import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-list',
@@ -23,9 +24,12 @@ export class TicketListComponent implements OnInit {
     console.log('event received from child:', hasBeenSelected);
   }
 
-  archivedTicket(ticket: Ticket) {
+  archivedTicket(ticket: Ticket, event: any) {
     // console.log(ticket);
     this.ticketService.archivedTicket(ticket);
+    // let element = event.srcElement;
+    // let el = document.getElementById(element.id)?.parentElement;
+    // el?.classList.add('ticket-archived');
   }
 
 }

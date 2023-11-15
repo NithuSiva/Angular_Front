@@ -1,6 +1,6 @@
 
 
-<div class="card ticket" (click)="selectTicket()">
+<div [ngClass]="ticket.archived ? 'card ticket-archived' : 'card ticket'" (click)="selectTicket()">
   <!-- we use the {{ }} syntax to display the data, more info: https://angular.io/guide/displaying-data-->
   <h3>Titre : {{ticket.title}}</h3>
   <i class="fas fa-calendar-alt"></i> {{ticket.date | date: 'shortTime'}} &nbsp;&nbsp;
@@ -17,5 +17,5 @@
     <i class="fas fa-walking"> {{ticket.major}}</i> 
   </div>
  
-  <button id="" type="submit" class="btn-custom" (click)="archivedTicket(ticket)">{{ticket.archived ? 'Archived' : 'Archive'}}</button>
+  <button id="{{ticket.title}}" type="submit" class="btn-custom" (click)="archivedTicket(ticket, $event)">{{ticket.archived ? 'Archived' : 'Archive'}}</button>
 </div>

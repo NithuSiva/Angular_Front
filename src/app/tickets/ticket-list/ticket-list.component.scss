@@ -7,6 +7,10 @@ app-ticket {
   width: 40%;
 }
 
+.ticket-archived {
+  background: rgb(221, 73, 73);
+}
+
 .ticket-list {
   display: flex;
   flex-direction: column;
