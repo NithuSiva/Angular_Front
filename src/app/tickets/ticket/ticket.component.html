@@ -18,4 +18,5 @@
   </div>
  
   <button id="{{ticket.title}}" type="submit" class="btn-custom" (click)="archivedTicket(ticket, $event)">{{ticket.archived ? 'Archived' : 'Archive'}}</button>
+  <button id="{{ticket.title}}" type="submit" class="btn-custom" (click)="deletedTicket(ticket)">Delete</button>
 </div>

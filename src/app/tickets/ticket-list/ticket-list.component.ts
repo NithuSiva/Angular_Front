@@ -32,4 +32,10 @@ export class TicketListComponent implements OnInit {
     // el?.classList.add('ticket-archived');
   }
 
+  deletedTicket(ticket: Ticket) {
+    this.ticketService.deletedTicket(ticket);
+    console.log("Ticket list component deleted")
+
+  } 
+
 }
