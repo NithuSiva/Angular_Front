@@ -25,24 +25,30 @@ export class UserFormComponent {
 
   }
 
-  addStudent() {
-    let id = this.studentService.getLastId() + 1; 
-    const studentToCreate: Student = this.studentForm.getRawValue() as Student;
-    studentToCreate['id'] = id;
+  // addStudent() {
+  //   let id = this.studentService.getLastId() + 1; 
+  //   const studentToCreate: Student = this.studentForm.getRawValue() as Student;
+  //   studentToCreate['id'] = id;
 
-    let tr = document.getElementsByClassName("tr");
-    let trArray = Array.from(tr);
-    if(trArray)
-      trArray.forEach(function(element) {
-        element.remove();
-      });
+  //   let tr = document.getElementsByClassName("tr");
+  //   let trArray = Array.from(tr);
+  //   if(trArray)
+  //     trArray.forEach(function(element) {
+  //       element.remove();
+  //     });
 
-    this.studentService.addStudent(studentToCreate);
+  //   this.studentService.addStudent(studentToCreate);
    
-    console.log("studentHasBeenAdded emit : ", studentToCreate);
-    this.studentService.studentHasBeenAdded.emit(studentToCreate);
+  //   console.log("studentHasBeenAdded emit : ", studentToCreate);
     
-    console.log(this.studentService.students$)
+  //   console.log(this.studentService.students$)
 
+  // }
+
+  httpPostStudent() {
+    
+    const studentToCreate: Student = this.studentForm.getRawValue() as Student;
+    this.studentService.httpPostStudent(studentToCreate);
+    
   }
 }

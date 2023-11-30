@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { StudentService } from '../../../services/student/student.service';
 import { Student } from '../../../models/student';
 
@@ -14,30 +14,45 @@ export class UserListComponent {
 
 
   constructor(public studentService: StudentService) {
-    this.studentService.students$.subscribe((student) => this.studentList = student);
+    // this.studentService.students$.subscribe((student) => this.studentList = student);
+    this.studentService.studentHasBeenAdded.subscribe((newStudent) => {
+      console.log("Emetteur a jours !", newStudent);
+      window.location.reload();
+    })
+    this.studentService.studentHasBeenDeleted.subscribe((newStudent) => {
+      console.log("Emetteur a jours !", newStudent);
+      window.location.reload();
+    })
   }
 
   ngOnInit() {
-    this.httpGetCall(this.studentService);
-
+    this.httpGetStudents();
     this.studentService.students$.subscribe((elem) => {
       elem.forEach(student => {
         this.STUDENTS_LIST.push(student);
       });
     })
   }
-
-  async httpGetCall(studentService: StudentService) {
+  
+  async httpGetStudents() {
     try {
-      await studentService.getApiAndClearStudent();
+      await this.studentService.httpGetStudents();
     } catch (error) {
-      console.error("Erreur");
+      console.error("Erreur httpGetStudents");
+    }
+  }
+
+  httpDeleteStudent(user: Student) {
+    try {
+      console.log("USER LIST user: ", user)
+      this.studentService.httpDeleteStudent(user.id);
+    } catch (error) {
+      console.error("Erreur httpDeleteStudent");
     }
   }
 
   ticketHasBeenSelected(hasBeenSelected: boolean) {
     console.log('event received from child:', hasBeenSelected);
   }
-
 
 }

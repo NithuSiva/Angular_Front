@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { TicketComponent, TicketFormComponent, TicketListComponent } from './tickets';
 import { TicketService } from '../services/ticket/ticket.service';
+import { StudentService } from '../services/student/student.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,7 +32,7 @@ import { UserComponent } from './users/user/user.component';
     RouterModule,
     AppRoutingModule // Import all dependencies
   ],
-  providers: [TicketService], // All the services need to be provided
+  providers: [TicketService, StudentService], // All the services need to be provided
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,19 +1,22 @@
 <p>Liste des étudiants</p>
 
+<app-user-form></app-user-form>
 
 <table>
     <tr>
         <th>Id</th>
         <th>Nom</th>
         <th>Prenom</th>
+        <th>Delete</th>
     </tr>
     <tbody id="tbody" >
         <tr class="tr" *ngFor="let student of STUDENTS_LIST">
-            <td> {{student.id}} </td>
+            <app-user class="app" [student]=student (studentHasBeenDeleted)="httpDeleteStudent($event)" ></app-user>
+
+            <!-- <td> {{student.id}} </td>
             <td> {{student.lastName}} </td>
             <td> {{student.firstName}} </td>
+            <td> <button id='{{student.id}}' class="delete_button" type="submit" (studentHasBeenDeleted)="httpDeleteStudent($event)"><i class="fas fa-trash"></i></button> </td> -->
         </tr>
     </tbody>
 </table>
-
-<app-user-form></app-user-form>

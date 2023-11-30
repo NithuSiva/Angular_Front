@@ -14,10 +14,29 @@ export class TicketListComponent implements OnInit {
   public displayTicketArchived: boolean = false;
 
   constructor(public ticketService: TicketService) {
-    this.ticketService.tickets$.subscribe((tickets) => this.ticketList = tickets);
+    this.ticketService.tickets$.subscribe((tickets) => {
+      this.ticketList = tickets;
+    });
+    this.ticketService.ticketHasBeenAdded.subscribe((newStudent) => {
+      console.log("Emetteur a jours !", newStudent);
+      window.location.reload();
+    })
+    this.ticketService.ticketHasBeenDeleted.subscribe((newStudent) => {
+      console.log("Emetteur a jours !", newStudent);
+      window.location.reload();
+    })
   }
 
   ngOnInit() {
+    this.httpGetTickets();
+  }
+
+  async httpGetTickets() {
+    try {
+      await this.ticketService.httpGetTickets();
+    } catch (error) {
+      console.error("Erreur httpGetStudents");
+    }
   }
 
   ticketHasBeenSelected(hasBeenSelected: boolean) {
@@ -33,9 +52,9 @@ export class TicketListComponent implements OnInit {
   }
 
   deletedTicket(ticket: Ticket) {
-    this.ticketService.deletedTicket(ticket);
+    // this.ticketService.deletedTicket(ticket);
     console.log("Ticket list component deleted")
-
   } 
 
+  
 }

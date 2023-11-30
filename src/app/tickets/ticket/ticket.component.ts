@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Ticket } from '../../../models/ticket';
 import { Major } from '../../../models/enum';
+import { TicketService } from 'src/services/ticket/ticket.service';
 
 @Component({
   selector: 'app-ticket',
@@ -25,7 +26,7 @@ export class TicketComponent implements OnInit {
   @Output()
   ticketHasBeenDeleted: EventEmitter<Ticket> = new EventEmitter<Ticket>();
 
-  constructor() {
+  constructor(public ticketService: TicketService) {
   }
 
   ngOnInit() {
@@ -41,7 +42,7 @@ export class TicketComponent implements OnInit {
 
   deletedTicket(ticket: Ticket) {
     this.ticketHasBeenDeleted.emit(ticket);
-    
+    console.log("suppresion")
   }
 
   archivedTicket(ticket: Ticket, event: any) {
@@ -50,5 +51,13 @@ export class TicketComponent implements OnInit {
     // let element = event.srcElement;
     // let el = document.getElementById(element.id)?.parentElement;
     // el?.classList.add('ticket-archived');
+  }
+
+  httpDeleteTicket(ticket: any) {
+    try {
+      this.ticketService.httpDeleteTicket(ticket.student.studentId);
+    } catch (error) {
+      console.error("Erreur httpDeleteStudent");
+    }
   }
 }

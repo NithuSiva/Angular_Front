@@ -7,7 +7,22 @@
   color: $white;
 }
 
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 98%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.routes {
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+}
+
 .header {
   background: $linearGradient;
-  padding: 1em;
+  height: 80%;
 }

@@ -1,14 +1,19 @@
 <h3>Create a new student</h3>
 <form class="" [formGroup]="studentForm">
-  <label for="title">
+  <label for="firstName">
     First Name <br>
     <input class="" type="text" id="firstName" [formControlName]="'firstName'">
   </label>
   <br>
-  <label for="description">
+  <label for="lastName">
     Last Name<br>
     <input class="" type="text" id="lastName" [formControlName]="'lastName'">
   </label>
   <br>
-  <button type="submit" class="btn-custom" (click)="addStudent()">Create</button>
+  <label for="id">
+    Id <br>
+    <input class="" type="number" id="id" [formControlName]="'id'">
+  </label>
+  <br>
+  <button type="submit" class="btn-custom" (click)="httpPostStudent()">Create</button>
 </form>

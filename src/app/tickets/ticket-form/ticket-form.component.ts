@@ -34,8 +34,8 @@ export class TicketFormComponent implements OnInit {
     console.log('Composant ticket-form créé');
   }
 
-  ngOnInit() {    
-    this.httpGetCall(this.studentService);
+  ngOnInit() {
+    this.httpGetStudents(this.studentService);
 
     this.studentService.getStudentsSubject().subscribe(elem => {
       elem.forEach(student => {
@@ -47,21 +47,34 @@ export class TicketFormComponent implements OnInit {
     })
   }
 
-  async httpGetCall(studentService: StudentService) {
+  async httpGetStudents(studentService: StudentService) {
     try {
-      await studentService.getApiAndClearStudent();
+      await studentService.httpGetStudents();
     } catch (error) {
       console.error("Erreur");
     }
   }
 
-  addTicket() {
-    const ticketToCreate: Ticket = this.ticketForm.getRawValue() as Ticket;
+  // addTicket() {
+  //   let ticketToCreate: Ticket = this.ticketForm.getRawValue() as Ticket;
+  //   ticketToCreate.date = new Date();
+  //   let studentID = this.ticketForm.get("studentID")!.value;
+  //   ticketToCreate.student = this.STUDENTS_LIST.find(student => student.id == studentID);
+  //   this.ticketService.addTicket(ticketToCreate);
+  //   console.log(this.studentService.students$)
+  // }
+
+  httpPostTicket() {
+    
+    let ticketToCreate: Ticket = this.ticketForm.getRawValue() as Ticket;
     ticketToCreate.date = new Date();
-    const studentID = this.ticketForm.get("studentID")!.value;
+    let studentID = this.ticketForm.get("studentID")!.value;
     ticketToCreate.student = this.STUDENTS_LIST.find(student => student.id == studentID);
     this.ticketService.addTicket(ticketToCreate);
     console.log(this.studentService.students$)
+    this.ticketService.httpPostTicket(ticketToCreate);
+    
   }
+
 
 }
